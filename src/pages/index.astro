@@ -1,11 +1,41 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import MainLayout from '../layouts/MainLayout.astro';
+import RankCard from '../components/RankCard.astro';
+import TechniqueCard from '../components/TechniqueCard.astro';
 ---
-
-<Layout>
-	<Welcome />
-</Layout>
+<MainLayout>
+  <section class="bg-gradient-to-b from-primary/10 to-white py-10 px-4 text-center">
+    <img src="/images/logo.png" alt="ATA Ranks Logo" class="mx-auto mb-4 h-48 w-48 object-contain" />
+    <h1 class="text-3xl sm:text-4xl font-bold mb-2">Welcome to ATA Ranks</h1>
+    <p class="max-w-xl mx-auto mb-6 text-lg text-gray-700">Your complete reference for all ranks, techniques, and training material. Progress your skills, track your journey, and master your art!</p>
+    <a href="/ranks" class="inline-block bg-primary text-white px-6 py-2 rounded-full font-semibold shadow hover:bg-primary/90 transition">Browse Ranks</a>
+  </section>
+  <section class="max-w-4xl mx-auto mt-10 px-4">
+    <h2 class="text-2xl font-bold mb-4">Featured Ranks</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <a href="/ranks/white-belt"><RankCard slug="white-belt">White Belt</RankCard></a>
+      <a href="/ranks/orange-belt"><RankCard slug="orange-belt">Orange Belt</RankCard></a>
+      <a href="/ranks/yellow-belt"><RankCard slug="yellow-belt">Yellow Belt</RankCard></a>
+      <a href="/ranks/camo-belt"><RankCard slug="camo-belt">Camo Belt</RankCard></a>
+      <a href="/ranks/green-belt"><RankCard slug="green-belt">Green Belt</RankCard></a>
+      <a href="/ranks/purple-belt"><RankCard slug="purple-belt">Purple Belt</RankCard></a>
+      <a href="/ranks/blue-belt"><RankCard slug="blue-belt">Blue Belt</RankCard></a>
+      <a href="/ranks/brown-belt"><RankCard slug="brown-belt">Brown Belt</RankCard></a>
+      <a href="/ranks/red-belt"><RankCard slug="red-belt">Red Belt</RankCard></a>
+    </div>
+    <div class="flex justify-end mt-2">
+      <a href="/ranks" class="text-blue-600 hover:underline">View all ranks &rarr;</a>
+    </div>
+  </section>
+  <section class="max-w-4xl mx-auto mt-10 px-4 mb-10">
+    <h2 class="text-2xl font-bold mb-4">Sample Techniques</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <TechniqueCard>Front Kick</TechniqueCard>
+      <TechniqueCard>Side Kick</TechniqueCard>
+      <TechniqueCard>Roundhouse Kick</TechniqueCard>
+    </div>
+    <div class="flex justify-end mt-2">
+      <a href="/techniques" class="text-blue-600 hover:underline">View all techniques &rarr;</a>
+    </div>
+  </section>
+</MainLayout>

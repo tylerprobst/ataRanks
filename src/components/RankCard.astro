@@ -1,0 +1,37 @@
+---
+const { slug, name } = Astro.props;
+---
+<div class="rank-card p-4 bg-white rounded-lg shadow mb-4 flex flex-col items-center text-center">
+  {/* Belt SVG or placeholder */}
+  {slug === 'white-belt' && (
+    <img src="/svg/white_belt_icon.svg" alt="White Belt Icon" class="mb-3 h-16 w-16 object-contain" />
+  )}
+  {slug === 'orange-belt' && (
+    <img src="/svg/orange_belt_icon.svg" alt="Orange Belt Icon" class="mb-3 h-16 w-16 object-contain" />
+  )}
+  {slug === 'yellow-belt' && (
+    <img src="/svg/yellow_belt_icon.svg" alt="Yellow Belt Icon" class="mb-3 h-16 w-16 object-contain" />
+  )}
+  {slug === 'camo-belt' && (
+    <div class="mb-3 h-16 w-16 rounded-full flex items-center justify-center" style="background: #4A5D23; color: white; font-weight: bold;">Camo</div>
+  )}
+  {slug === 'green-belt' && (
+    <div class="mb-3 h-16 w-16 rounded-full flex items-center justify-center" style="background: #4CAF50; color: white; font-weight: bold;">Green</div>
+  )}
+  {slug === 'purple-belt' && (
+    <div class="mb-3 h-16 w-16 rounded-full flex items-center justify-center" style="background: #8E24AA; color: white; font-weight: bold;">Purple</div>
+  )}
+  {slug === 'blue-belt' && (
+    <div class="mb-3 h-16 w-16 rounded-full flex items-center justify-center" style="background: #1976D2; color: white; font-weight: bold;">Blue</div>
+  )}
+  {slug === 'brown-belt' && (
+    <div class="mb-3 h-16 w-16 rounded-full flex items-center justify-center" style="background: #795548; color: white; font-weight: bold;">Brown</div>
+  )}
+  {slug === 'red-belt' && (
+    <div class="mb-3 h-16 w-16 rounded-full flex items-center justify-center" style="background: #CE121D; color: white; font-weight: bold;">Red</div>
+  )}
+  {(slug && slug.includes('black-belt')) && (
+    <img src="/svg/black_belt_icon.svg" alt="Black Belt Icon" class="mb-3 h-16 w-16 object-contain" />
+  )}
+  <slot />
+</div>

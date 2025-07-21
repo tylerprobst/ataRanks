@@ -1,0 +1,29 @@
+---
+---
+<header x-data="{ open: false }" class="bg-white shadow-md sticky top-0 z-50">
+  <div class="max-w-4xl mx-auto flex items-center justify-between p-4">
+    <a href="/" class="flex items-center gap-2">
+      <img src="/images/logo.png" alt="ATA Ranks Logo" class="h-12 w-12 object-contain" />
+    </a>
+    <button class="md:hidden p-2" aria-label="Open Menu" @click="open = !open">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+    </button>
+    <nav class="hidden md:flex gap-6">
+      <a href="/" class="hover:text-primary">Home</a>
+      <a href="/ranks" class="hover:text-primary">Ranks</a>
+      <a href="/techniques" class="hover:text-primary">Techniques</a>
+      <a href="/about" class="hover:text-primary">About</a>
+      <a href="/contact" class="hover:text-primary">Contact</a>
+    </nav>
+  </div>
+  <!-- Mobile Nav -->
+  <nav x-show="open" x-transition class="md:hidden bg-white border-t border-gray-200">
+    <div class="flex flex-col gap-4 p-4">
+      <a href="/" class="hover:text-primary">Home</a>
+      <a href="/ranks" class="hover:text-primary">Ranks</a>
+      <a href="/techniques" class="hover:text-primary">Techniques</a>
+      <a href="/about" class="hover:text-primary">About</a>
+      <a href="/contact" class="hover:text-primary">Contact</a>
+    </div>
+  </nav>
+</header> 

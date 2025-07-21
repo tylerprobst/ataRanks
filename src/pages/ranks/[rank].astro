@@ -1,0 +1,172 @@
+---
+import RankLayout from '../../layouts/RankLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ranks from '../../data/ranks.json';
+
+export async function getStaticPaths() {
+  return ranks.map(rank => ({
+    params: { rank: rank.slug }
+  }));
+}
+
+const { rank } = Astro.params;
+const rankData = ranks.find(r => r.slug === rank);
+
+if (!rankData) {
+  throw new Error('Rank not found');
+}
+---
+<RankLayout>
+  <div class="relative">
+    <div class="absolute inset-y-0 left-0 w-8 hidden md:block"
+      style={`background: linear-gradient(to right, ${rankData.beltColor}CC, transparent); border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem;`}></div>
+    <div class="absolute inset-y-0 right-0 w-8 hidden md:block"
+      style={`background: linear-gradient(to left, ${rankData.beltColor}CC, transparent); border-top-left-radius: 0.5rem; border-bottom-left-radius: 0.5rem;`}></div>
+    <div class="max-w-4xl mx-auto p-4 relative z-10">
+      <Breadcrumbs>
+        <a href="/" class="text-primary hover:underline">Home</a> &gt; 
+        <a href="/ranks" class="text-primary hover:underline">Ranks</a> &gt; 
+        <span>{rankData.name}</span>
+      </Breadcrumbs>
+      {rankData.form && (
+        <>
+          <section class="mb-8 flex flex-col items-center">
+            {/* Belt SVG Icon */}
+            {rankData.slug === 'white-belt' && (
+              <img src="/svg/white_belt_icon.svg" alt="White Belt Icon" class="h-20 w-20 mb-4" />
+            )}
+            {rankData.slug === 'orange-belt' && (
+              <img src="/svg/orange_belt_icon.svg" alt="Orange Belt Icon" class="h-20 w-20 mb-4" />
+            )}
+            {rankData.slug === 'yellow-belt' && (
+              <img src="/svg/yellow_belt_icon.svg" alt="Yellow Belt Icon" class="h-20 w-20 mb-4" />
+            )}
+            {rankData.slug === 'camo-belt' && (
+              <img src="https://via.placeholder.com/80x80?text=Camo+Belt" alt="Camo Belt Icon" class="h-20 w-20 mb-4" />
+            )}
+            {rankData.slug === 'green-belt' && (
+              <img src="https://via.placeholder.com/80x80?text=Green+Belt" alt="Green Belt Icon" class="h-20 w-20 mb-4" />
+            )}
+            {rankData.slug === 'purple-belt' && (
+              <div class="h-20 w-20 mb-4 rounded-full flex items-center justify-center" style="background: #8E24AA; color: white; font-weight: bold; font-size: 1.25rem;">Purple</div>
+            )}
+            {rankData.slug === 'blue-belt' && (
+              <div class="h-20 w-20 mb-4 rounded-full flex items-center justify-center" style="background: #1976D2; color: white; font-weight: bold; font-size: 1.25rem;">Blue</div>
+            )}
+            {rankData.slug === 'brown-belt' && (
+              <div class="h-20 w-20 mb-4 rounded-full flex items-center justify-center" style="background: #795548; color: white; font-weight: bold; font-size: 1.25rem;">Brown</div>
+            )}
+            {rankData.slug === 'red-belt' && (
+              <div class="h-20 w-20 mb-4 rounded-full flex items-center justify-center" style="background: #CE121D; color: white; font-weight: bold; font-size: 1.25rem;">Red</div>
+            )}
+            {/* Black Belts */}
+            {(rankData.slug === 'rec-1st-degree-black-belt' || rankData.slug === 'dec-1st-degree-black-belt' || rankData.slug === 'rec-2nd-degree-black-belt' || rankData.slug === 'dec-2nd-degree-black-belt' || rankData.slug === '3rd-degree-black-belt' || rankData.slug === '4th-degree-black-belt' || rankData.slug === '5th-degree-black-belt' || rankData.slug === '6th-degree-black-belt' || rankData.slug === '7th-degree-black-belt' || rankData.slug === '8th-degree-black-belt' || rankData.slug === '9th-degree-black-belt') && (
+              <img src="/svg/black_belt_icon.svg" alt="Black Belt Icon" class="h-20 w-20 mb-4" />
+            )}
+            {/* Form Title and Details */}
+            <h2 class="text-xl font-bold mb-2">{rankData.form.grade}: {rankData.form.name}</h2>
+            <p class="italic mb-2">{rankData.form.meaning}</p>
+            <p class="mb-2"><strong>Ready Position:</strong> {rankData.form.readyPosition}</p>
+          </section>
+          <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-semibold">New Blocks</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                  {rankData.form.newBlocks.map(b => <li>{b}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold">New Strikes</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                  {rankData.form.newStrikes.map(s => <li>{s}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold">New Kicks</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                  {rankData.form.newKicks.map(k => <li>{k}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h3 class="font-semibold">New Stances</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                  {rankData.form.newStances.map(st => <li>{st}</li>)}
+                </ul>
+              </div>
+            </div>
+          </section>
+          {rankData.slug === 'white-belt' && (
+            <div class="mb-8 bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
+              <img src="/images/formPatterns/9th-grade-white-belt-form-songahm-1final-1.jpeg" alt="White Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+            </div>
+          )}
+          {rankData.slug === 'orange-belt' && (
+            <div class="mb-8 bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
+              <img src="/images/formPatterns/8th-grade-orange-belt-form-songahm-2final.jpeg" alt="Orange Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+            </div>
+          )}
+          {rankData.slug === 'yellow-belt' && (
+            <div class="mb-8 bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
+              <img src="/images/formPatterns/7th-grade-yellow-belt-form-songahm-3final.jpeg" alt="Yellow Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+            </div>
+          )}
+          {rankData.slug === 'camo-belt' && (
+            <div class="mb-8 bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
+              <img src="/images/formPatterns/6th-grade-camo-belt-form-songahm-4final.jpeg" alt="Camo Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+            </div>
+          )}
+          {rankData.slug === 'green-belt' && (
+            <div class="mb-8 bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
+              <img src="/images/formPatterns/5th-grade-green-belt-form-songahm-5final.jpeg" alt="Green Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+            </div>
+          )}
+          {rankData.slug === 'purple-belt' && (
+            <div class="mb-8 bg-white p-6 rounded-lg shadow">
+              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
+              <img src="/images/formPatterns/4th-grade-purple-belt-form-in-wha-1-final.jpeg" alt="Purple Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+            </div>
+          )}
+          <section class="mb-8">
+            <h3 class="font-semibold">Step-by-Step Movements</h3>
+            <ol class="list-decimal list-inside text-gray-700">
+              {rankData.form.steps.map(step => <li>{step}</li>)}
+            </ol>
+          </section>
+          <section class="mb-8">
+            <h3 class="font-semibold">Segments Table</h3>
+            <div class="overflow-x-auto">
+              <table class="w-full border mt-2 text-sm">
+                <thead>
+                  <tr class="bg-gray-100">
+                    <th class="p-2 border">#</th>
+                    <th class="p-2 border">Segment</th>
+                    <th class="p-2 border">Technique</th>
+                    <th class="p-2 border">Stance</th>
+                    <th class="p-2 border">Section</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rankData.form.segments.map((seg, i) => (
+                    <tr>
+                      <td class="p-2 border">{i + 1}</td>
+                      <td class="p-2 border">{seg.segment}</td>
+                      <td class="p-2 border">{seg.technique}</td>
+                      <td class="p-2 border">{seg.stance}</td>
+                      <td class="p-2 border">{seg.section}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </>
+      )}
+    </div>
+  </div>
+</RankLayout> 
