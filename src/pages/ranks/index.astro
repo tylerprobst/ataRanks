@@ -17,15 +17,17 @@ import ranks from '../../data/ranks.json';
         />
       </div>
       <div class="ranks-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-        {ranks.map(rank => (
-          <a
-            href={`/ranks/${rank.slug}`}
-            x-show={`!search || '${rank.name.toLowerCase()}'.includes(search.toLowerCase())`}
-            style="display: none;"
-          >
-            <RankCard slug={rank.slug} name={rank.name}>{rank.name}</RankCard>
-          </a>
-        ))}
+        {ranks
+          .filter(rank => rank.slug !== 'rec-1st-degree-black-belt' && rank.slug !== 'rec-2nd-degree-black-belt')
+          .map(rank => (
+            <a
+              href={`/ranks/${rank.slug}`}
+              x-show={`!search || '${rank.name.toLowerCase()}'.includes(search.toLowerCase())`}
+              style="display: none;"
+            >
+              <RankCard slug={rank.slug} name={rank.name}>{rank.name}</RankCard>
+            </a>
+          ))}
       </div>
     </div>
   </div>

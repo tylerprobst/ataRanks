@@ -96,40 +96,10 @@ if (!rankData) {
               </div>
             </div>
           </section>
-          {rankData.slug === 'white-belt' && (
+          {rankData.form && rankData.form.formPatternImage && (
             <div class="mb-8 bg-white p-6 rounded-lg shadow">
               <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
-              <img src="/images/formPatterns/9th-grade-white-belt-form-songahm-1final-1.jpeg" alt="White Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
-            </div>
-          )}
-          {rankData.slug === 'orange-belt' && (
-            <div class="mb-8 bg-white p-6 rounded-lg shadow">
-              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
-              <img src="/images/formPatterns/8th-grade-orange-belt-form-songahm-2final.jpeg" alt="Orange Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
-            </div>
-          )}
-          {rankData.slug === 'yellow-belt' && (
-            <div class="mb-8 bg-white p-6 rounded-lg shadow">
-              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
-              <img src="/images/formPatterns/7th-grade-yellow-belt-form-songahm-3final.jpeg" alt="Yellow Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
-            </div>
-          )}
-          {rankData.slug === 'camo-belt' && (
-            <div class="mb-8 bg-white p-6 rounded-lg shadow">
-              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
-              <img src="/images/formPatterns/6th-grade-camo-belt-form-songahm-4final.jpeg" alt="Camo Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
-            </div>
-          )}
-          {rankData.slug === 'green-belt' && (
-            <div class="mb-8 bg-white p-6 rounded-lg shadow">
-              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
-              <img src="/images/formPatterns/5th-grade-green-belt-form-songahm-5final.jpeg" alt="Green Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
-            </div>
-          )}
-          {rankData.slug === 'purple-belt' && (
-            <div class="mb-8 bg-white p-6 rounded-lg shadow">
-              <h3 class="font-semibold text-center mb-2">Form Pattern</h3>
-              <img src="/images/formPatterns/4th-grade-purple-belt-form-in-wha-1-final.jpeg" alt="Purple Belt Form Pattern" class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
+              <img src={rankData.form.formPatternImage} alt={`${rankData.name} Form Pattern`} class="mx-auto my-6 rounded-lg shadow max-w-full h-auto w-96" />
             </div>
           )}
           <section class="mb-8">
