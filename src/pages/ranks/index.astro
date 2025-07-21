@@ -19,15 +19,28 @@ import ranks from '../../data/ranks.json';
       <div class="ranks-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
         {ranks
           .filter(rank => rank.slug !== 'rec-1st-degree-black-belt' && rank.slug !== 'rec-2nd-degree-black-belt')
-          .map(rank => (
-            <a
-              href={`/ranks/${rank.slug}`}
-              x-show={`!search || '${rank.name.toLowerCase()}'.includes(search.toLowerCase())`}
-              style="display: none;"
-            >
-              <RankCard slug={rank.slug} name={rank.name}>{rank.name}</RankCard>
-            </a>
-          ))}
+          .map(rank => {
+            const comingSoon = [
+              '5th-degree-black-belt',
+              '6th-degree-black-belt',
+              '7th-degree-black-belt',
+              '8th-degree-black-belt',
+              '9th-degree-black-belt'
+            ].includes(rank.slug);
+            return comingSoon ? (
+              <div x-show={`!search || '${rank.name.toLowerCase()}'.includes(search.toLowerCase())`} style="display: none;">
+                <RankCard slug={rank.slug} name={rank.name} comingSoon={true}>{rank.name}</RankCard>
+              </div>
+            ) : (
+              <a
+                href={`/ranks/${rank.slug}`}
+                x-show={`!search || '${rank.name.toLowerCase()}'.includes(search.toLowerCase())`}
+                style="display: none;"
+              >
+                <RankCard slug={rank.slug} name={rank.name}>{rank.name}</RankCard>
+              </a>
+            );
+          })}
       </div>
     </div>
   </div>
